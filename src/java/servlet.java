@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,14 +19,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Familia Torres
  */
- 
+@WebServlet("/servlet")
 public class servlet extends HttpServlet {
  
-    @Override
-    protected void doGet(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
 
-        String filePath = "C:/im/imagen.JPG";
+    protected void doGet(HttpServletRequest request,HttpServletResponse response) 
+        throws ServletException, IOException {
+
+        String filePath = "D:/im/imagen.JPG";
         File downloadFile = new File(filePath);
         FileInputStream inStream = new FileInputStream(downloadFile);
          
@@ -61,6 +62,7 @@ public class servlet extends HttpServlet {
         while ((bytesRead = inStream.read(buffer)) != -1) {
             outStream.write(buffer, 0, bytesRead);
         }
+         
          
         inStream.close();
         outStream.close();     
